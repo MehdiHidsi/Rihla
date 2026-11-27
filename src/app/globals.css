@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-emerald-950: #08261d;
+  --color-brand-50: #eef5f1;
+  --color-brand-100: #d7e7de;
+  --color-brand-200: #b0cfbf;
+  --color-brand-500: #1f7a5a;
+  --color-brand-600: #176549;
+  --color-brand-700: #0f5037;
+  --color-brand-800: #0c3f2c;
+  --color-brand-900: #0a3324;
+  --color-sand: #faf8f3;
+  --color-surface: #f2efe8;
+  --color-line: #e4dfd3;
+  --color-ink: #1d2320;
+  --color-muted: #5d665f;
+  --color-amber-brand: #b9791f;
+  --color-amber-soft: #fbf1dd;
+  --color-ok: #2f7d4f;
+  --color-warn: #b0701a;
+  --color-danger: #b3392f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-sand);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 3px solid #e0a43a;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-brand-700 text-white hover:bg-brand-800;
+  }
+  .btn-amber {
+    @apply bg-amber-brand text-white hover:bg-[#9d6618];
+  }
+  .btn-outline {
+    @apply border border-line bg-white text-ink hover:border-brand-500 hover:text-brand-700;
+  }
+  .btn-ghost {
+    @apply text-ink hover:bg-surface;
+  }
+  .btn-danger {
+    @apply bg-danger text-white hover:bg-[#962e25];
+  }
+  .btn-sm {
+    @apply min-h-9 px-3 py-1.5 text-[13px];
+  }
+  .field {
+    @apply w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink placeholder:text-[#8a918b] focus:border-brand-500;
+    min-height: 44px;
+  }
+  .field[aria-invalid="true"] {
+    @apply border-danger;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold tracking-wide text-muted uppercase;
+  }
+  .card {
+    @apply rounded-xl border border-line bg-white shadow-[0_1px_2px_rgba(20,30,25,0.04)];
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8;
+  }
+  .h-display {
+    @apply font-extrabold tracking-tight text-balance;
+  }
+  .eyebrow {
+    @apply text-xs font-bold tracking-[0.14em] text-amber-brand uppercase;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #ece8de 25%, #f5f2ea 37%, #ece8de 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+dialog::backdrop {
+  background: rgba(15, 25, 20, 0.55);
+}
